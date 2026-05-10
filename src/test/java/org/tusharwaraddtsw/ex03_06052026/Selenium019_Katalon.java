@@ -1,11 +1,10 @@
-package org.tusharwaraddtsw.ex_06052026;
+package org.tusharwaraddtsw.ex03_06052026;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.*;

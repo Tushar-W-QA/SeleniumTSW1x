@@ -1,4 +1,4 @@
-package org.tusharwaraddtsw.ex_06052026;
+package org.tusharwaraddtsw.ex03_06052026;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
