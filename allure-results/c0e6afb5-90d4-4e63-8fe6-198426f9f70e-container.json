@@ -1,0 +1,1 @@
+{"uuid":"c0e6afb5-90d4-4e63-8fe6-198426f9f70e","name":"SeleniumTSW1x","children":["6fedb294-2966-4107-945c-d6d66808de96"],"befores":[{"name":"openBrowser","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1780461391390,"stop":1780461393797}],"afters":[],"start":1780461391364,"stop":1780461394956}
