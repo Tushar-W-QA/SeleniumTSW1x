@@ -13,9 +13,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
-import java.util.List;
+import java.util.Set;
 
-public class Selenium046_Action_Iframe_P3 {
+public class Selenium046_Window_P1 {
 
     EdgeDriver driver;
     @BeforeTest
@@ -34,30 +34,23 @@ public class Selenium046_Action_Iframe_P3 {
     public void testActionMethod() {
 
         driver.manage().window().maximize();
+        driver.get("https://the-internet.herokuapp.com/windows");
 
-        driver.get("https://www.makemytrip.com/");
+        String parentWindow = driver.getWindowHandle();
+        System.out.println("Parent Window is : " + parentWindow);
 
+        driver.findElement(By.linkText("Click Here")).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-cy=\"closeModal\"]")));
-        driver.findElement(By.xpath("//span[@data-cy=\"closeModal\"]")).click();
+        Set<String> windowHandles = driver.getWindowHandles();
+        System.out.println("windows handles are : " + windowHandles);
 
-        WebElement fromCity = driver.findElement(By.xpath("//input[@id='fromCity']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(fromCity).sendKeys("New Delhi").build().perform();
-
-//        List<WebElement> autoList = driver.findElements(By.xpath("//ul[@class='react-autosuggest__suggestions-list']/li"));
-//
-//        for (WebElement e : autoList){
-//            if(e.getText().contains("New Delhi")){
-//                e.click();
-//                break;
-//            }
-//        }
-
-
-
-
+        for (String handle : windowHandles){
+            driver.switchTo().window(handle);
+            if(driver.getPageSource().contains("New Window")){
+                System.out.println("Test has been verified");
+                break;
+            }
+        }
 
     }
 

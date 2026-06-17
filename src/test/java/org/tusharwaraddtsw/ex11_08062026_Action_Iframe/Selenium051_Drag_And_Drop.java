@@ -6,16 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-import java.util.List;
-
-public class Selenium046_Action_Iframe_P3 {
+public class Selenium051_Drag_And_Drop {
 
     EdgeDriver driver;
     @BeforeTest
@@ -34,26 +29,14 @@ public class Selenium046_Action_Iframe_P3 {
     public void testActionMethod() {
 
         driver.manage().window().maximize();
+        driver.get("https://the-internet.herokuapp.com/drag_and_drop");
 
-        driver.get("https://www.makemytrip.com/");
-
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-cy=\"closeModal\"]")));
-        driver.findElement(By.xpath("//span[@data-cy=\"closeModal\"]")).click();
-
-        WebElement fromCity = driver.findElement(By.xpath("//input[@id='fromCity']"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(fromCity).sendKeys("New Delhi").build().perform();
 
-//        List<WebElement> autoList = driver.findElements(By.xpath("//ul[@class='react-autosuggest__suggestions-list']/li"));
-//
-//        for (WebElement e : autoList){
-//            if(e.getText().contains("New Delhi")){
-//                e.click();
-//                break;
-//            }
-//        }
+        WebElement from = driver.findElement(By.xpath("//div[@id=\"column-a\"]"));
+        WebElement to = driver.findElement(By.xpath("//div[@id=\"column-b\"]"));
+
+        actions.dragAndDrop(from,to).build().perform();
 
 
 

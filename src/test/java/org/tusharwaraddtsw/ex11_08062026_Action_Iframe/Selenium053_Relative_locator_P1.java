@@ -6,16 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-import java.util.List;
+import static org.openqa.selenium.support.locators.RelativeLocator.*;
 
-public class Selenium046_Action_Iframe_P3 {
+public class Selenium053_Relative_locator_P1 {
 
     EdgeDriver driver;
     @BeforeTest
@@ -34,26 +31,12 @@ public class Selenium046_Action_Iframe_P3 {
     public void testActionMethod() {
 
         driver.manage().window().maximize();
+        driver.get("https://awesomeqa.com/practice.html");
 
-        driver.get("https://www.makemytrip.com/");
+        WebElement b1 = driver.findElement(By.xpath("//div[@dir=\"ltr\"]/div[14]/span"));
 
+        driver.findElement(with(By.id("exp-4")).toRightOf(b1)).click();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@data-cy=\"closeModal\"]")));
-        driver.findElement(By.xpath("//span[@data-cy=\"closeModal\"]")).click();
-
-        WebElement fromCity = driver.findElement(By.xpath("//input[@id='fromCity']"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(fromCity).sendKeys("New Delhi").build().perform();
-
-//        List<WebElement> autoList = driver.findElements(By.xpath("//ul[@class='react-autosuggest__suggestions-list']/li"));
-//
-//        for (WebElement e : autoList){
-//            if(e.getText().contains("New Delhi")){
-//                e.click();
-//                break;
-//            }
-//        }
 
 
 
