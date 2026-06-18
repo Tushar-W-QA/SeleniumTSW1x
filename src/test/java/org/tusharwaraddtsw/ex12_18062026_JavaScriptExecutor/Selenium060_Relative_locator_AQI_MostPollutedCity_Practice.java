@@ -1,4 +1,4 @@
-package org.tusharwaraddtsw.ex11_08062026_Action_Iframe;
+package org.tusharwaraddtsw.ex12_18062026_JavaScriptExecutor;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
-public class Selenium054_Relative_locator_AQI_MostPollutedCity {
+public class Selenium060_Relative_locator_AQI_MostPollutedCity_Practice {
 
     EdgeDriver driver;
     @BeforeTest
@@ -38,14 +38,9 @@ public class Selenium054_Relative_locator_AQI_MostPollutedCity {
         WebElement searchInputBox = driver.findElement(By.xpath("//input[@placeholder='Search']"));
         searchInputBox.sendKeys("India" + Keys.ENTER);
 
-        List<WebElement> list_of_cities = driver.findElements(By.xpath("//div/div/a[@class='rw-g rw-p'][2]"));
-        //System.out.println(list_of_cities);
-
-        for (WebElement l : list_of_cities) {
-            System.out.println(l.getText());
-            String s1 = driver.findElement(with(By.tagName("p")).toRightOf(l)).getText();
-            System.out.println(s1);
-
+        List<WebElement> list_of_states = driver.findElements(By.xpath("//p[@class='name']/span"));
+        for(WebElement e : list_of_states){
+            System.out.println(e.getText());
         }
 
 

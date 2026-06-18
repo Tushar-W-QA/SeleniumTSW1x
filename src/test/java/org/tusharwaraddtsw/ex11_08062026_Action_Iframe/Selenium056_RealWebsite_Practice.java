@@ -1,20 +1,19 @@
 package org.tusharwaraddtsw.ex11_08062026_Action_Iframe;
 
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
-public class Selenium054_Relative_locator_AQI_MostPollutedCity {
+public class Selenium056_RealWebsite_Practice {
 
     EdgeDriver driver;
     @BeforeTest
@@ -29,28 +28,27 @@ public class Selenium054_Relative_locator_AQI_MostPollutedCity {
 
     }
 
+    @Description("Verify the Codepen website")
     @Test
-    public void testActionMethod() {
+    public void testActionMethod() throws InterruptedException {
 
         driver.manage().window().maximize();
-        driver.get("https://www.aqi.in/real-time-most-polluted-city-ranking");
+        driver.get("https://codepen.io/AbdullahSajjad/full/LYGVRgK");
+        Thread.sleep(15000);
 
-        WebElement searchInputBox = driver.findElement(By.xpath("//input[@placeholder='Search']"));
-        searchInputBox.sendKeys("India" + Keys.ENTER);
+        driver.switchTo().frame("result");
+        WebElement submitButton = driver.findElement(By.xpath("//form[@id=\"form\"]/button"));
+        submitButton.click();
 
-        List<WebElement> list_of_cities = driver.findElements(By.xpath("//div/div/a[@class='rw-g rw-p'][2]"));
-        //System.out.println(list_of_cities);
+        WebElement userName = driver.findElement(By.xpath("//input[@id=\"username\"]"));
 
-        for (WebElement l : list_of_cities) {
-            System.out.println(l.getText());
-            String s1 = driver.findElement(with(By.tagName("p")).toRightOf(l)).getText();
-            System.out.println(s1);
+        WebElement errorMessageElement = driver.findElement(with(By.tagName("small")).below(userName));
 
-        }
+        String errorMessageText = errorMessageElement.getText();
+        System.out.println(errorMessageText);
 
-
-
-
+        Assert.assertTrue(errorMessageElement.isDisplayed());
+        Assert.assertEquals(errorMessageText,"Username must be at least 3 characters");
 
 
     }
